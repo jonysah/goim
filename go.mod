@@ -26,5 +26,6 @@ require (
 	github.com/zhenjl/cityhash v0.0.0-20131128155616-cdd6a94144ab
 	golang.org/x/net v0.0.0-20201202161906-c7110b5ffcbb
 	google.golang.org/grpc v1.22.3
+	google.golang.org/protobuf v1.23.0
 	gopkg.in/Shopify/sarama.v1 v1.19.0
 )

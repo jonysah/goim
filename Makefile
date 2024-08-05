@@ -2,6 +2,7 @@
 GOCMD=GO111MODULE=on go
 GOBUILD=$(GOCMD) build
 GOTEST=$(GOCMD) test
+GORUN=$(GOCMD) run
 
 all: test build
 build:
@@ -13,6 +14,7 @@ build:
 	$(GOBUILD) -o target/comet cmd/comet/main.go
 	$(GOBUILD) -o target/logic cmd/logic/main.go
 	$(GOBUILD) -o target/job cmd/job/main.go
+
 
 test:
 	$(GOTEST) -v ./...
@@ -29,3 +31,8 @@ stop:
 	pkill -f target/logic
 	pkill -f target/job
 	pkill -f target/comet
+
+start:
+	$(GORUN)  cmd/comet/main.go -conf=cmd/comet/comet-example.toml -region=sh -zone=sh001 -deploy.env=dev -host=test1
+	$(GORUN)  cmd/logic/main.go -conf=cmd/logic/logic-example.toml -region=sh -zone=sh001 -deploy.env=dev -host=test1
+	$(GORUN)  cmd/job/main.go -conf=cmd/job/job-example.toml -region=sh -zone=sh001 -deploy.env=dev -host=test1
